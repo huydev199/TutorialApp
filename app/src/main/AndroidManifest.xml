@@ -12,6 +12,12 @@
         android:theme="@style/Theme.TutorialApp"
         tools:targetApi="31">
         <activity
+            android:name=".HomeActivity"
+            android:exported="false" />
+
+        <service android:name=".MyService" />
+
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
