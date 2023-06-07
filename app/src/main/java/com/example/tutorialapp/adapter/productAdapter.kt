@@ -15,12 +15,12 @@ class productAdapter(
 ) : RecyclerView.Adapter<productAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val textView: TextView
-
-        init {
-            // Define click listener for the ViewHolder's View.
-            textView = view.findViewById(R.id.textView)
-        }
+//        val textView: TextView
+//
+//        init {
+//            // Define click listener for the ViewHolder's View.
+//            textView = view.findViewById(R.id.text)
+//        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
