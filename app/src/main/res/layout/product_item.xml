@@ -6,22 +6,23 @@
     android:layout_height="300dp"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp">
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cardCornerRadius="5dp"
+        android:background="@drawable/custom_ripple"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/productImage"
             android:layout_width="180dp"
             android:layout_height="154dp"
             android:scaleType="centerCrop"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@tools:sample/avatars"
+            />
 
 
     </androidx.cardview.widget.CardView>
@@ -49,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="my product"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:textColor="@color/black"
             android:fontFamily="@font/chivo_regular"
            />
