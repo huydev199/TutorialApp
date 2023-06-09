@@ -1,6 +1,7 @@
 package com.example.tutorialapp.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.example.tutorialapp.HomeActivity
+import com.example.tutorialapp.ProductDetailActivity
 import com.example.tutorialapp.R
 import com.example.tutorialapp.model.Product
 import com.squareup.picasso.Picasso
@@ -81,6 +84,10 @@ class ProductAdapter(
 //                val title = "Danh sách sản phẩm"
 //                headerHolder.bind(title)
                 holder.txtName.setText("$position")
+                holder.itemView.setOnClickListener {
+                    val i = Intent(context , ProductDetailActivity::class.java)
+                    context.startActivity(i)
+                }
             }
             else -> {
                 if (holder is FooterViewHolder) {

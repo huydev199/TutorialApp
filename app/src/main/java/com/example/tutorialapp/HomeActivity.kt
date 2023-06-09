@@ -70,8 +70,6 @@ class HomeActivity : AppCompatActivity() {
                             adapter.isLoadingMore = false
                             runOnUiThread(Runnable { adapter.notifyDataSetChanged() })
 
-
-//                            adapter.isLoadingMore = false
                         }
                     }, 2000)
 
@@ -79,18 +77,7 @@ class HomeActivity : AppCompatActivity() {
             }
         })
 
-
-//        recyclerView.addOnItemTouchListener(object : RecyclerView.OnItemTouchListener{
-//            override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
-//                Toast.makeText(this@HomeActivity, "hello", Toast.LENGTH_SHORT).show()
-//                return true
-//            }
-//
-//            override fun onTouchEvent(rv: RecyclerView, e: MotionEvent) {
-//            }
-//
-//            override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
-//            }
-//        })
     }
+
+
 }

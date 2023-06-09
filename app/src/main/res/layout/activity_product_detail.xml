@@ -6,10 +6,129 @@
     android:layout_height="match_parent"
     tools:context=".ProductDetailActivity">
 
-    <include
-        android:id="@+id/header"
-        layout="@layout/header_layout"
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <include
+                android:id="@+id/header"
+                layout="@layout/header_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <FrameLayout
+                android:id="@+id/frameLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/header">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/view_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="264dp"
+
+                    app:layout_constraintTop_toBottomOf="@+id/header">
+
+                </androidx.viewpager2.widget.ViewPager2>
+
+                <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                    android:id="@+id/dots_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|bottom"
+                    android:layout_marginBottom="30dp"
+                    app:dotsColor="@color/white"
+                    app:dotsCornerRadius="8dp"
+                    app:dotsSize="7dp"
+                    app:dotsSpacing="4dp"
+                    app:dotsWidthFactor="2.5"
+                    app:progressMode="true"
+                    app:selectedDotColor="@color/grey" />
+                <!--        <me.relex.circleindicator.CircleIndicator-->
+                <!--            android:id="@+id/indicator2"-->
+                <!--            android:layout_width="100dp"-->
+                <!--            app:ci_width="40dp"-->
+                <!--            app:ci_height="40dp"-->
+                <!--            android:layout_height="100dp"-->
+                <!--            android:layout_gravity="center|bottom"-->
+                <!--            android:layout_marginBottom="17dp"-->
+                <!--            app:ci_drawable="@drawable/baseline_arrow_back_24"-->
+                <!--            android:translationZ="10dp"-->
+                <!--            />-->
+            </FrameLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                app:layout_constraintTop_toBottomOf="@+id/frameLayout2"
+                tools:layout_editor_absoluteX="1dp">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_toLeftOf="@+id/bookmarkImg"
+                    android:fontFamily="@font/quicksand_bold"
+                    android:text="Helen Line Ring Cup"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+                <ImageView
+                    android:id="@+id/bookmarkImg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="25dp"
+                    app:srcCompat="@drawable/baseline_bookmark_border_24" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/bookmarkImg"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="13dp"
+                    android:fontFamily="@font/quicksand_bold"
+                    android:text="1,350,000 đ"
+                    android:textColor="@color/black"
+                    android:textSize="25dp" />
+
+            </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/linearLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="56dp"-->
+<!--        android:background="@color/black"-->
+<!--        android:orientation="horizontal"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/scrollView2">-->
+
+<!--    </LinearLayout>-->
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
