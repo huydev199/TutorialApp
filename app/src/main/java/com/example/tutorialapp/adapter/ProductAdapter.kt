@@ -1,0 +1,111 @@
+package com.example.tutorialapp.adapter
+
+import android.content.Context
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.ProgressBar
+import android.widget.TextView
+import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.RecyclerView
+import com.example.tutorialapp.R
+import com.example.tutorialapp.model.Product
+import com.squareup.picasso.Picasso
+import org.w3c.dom.Text
+import kotlin.math.log
+
+const val REGULAR_VIEW_TYPE = 0
+const val FOOTER_VIEW_TYPE = 1
+
+class ProductAdapter(
+    private val list: MutableList<Product> = mutableListOf<Product>(),
+    private val context: Context
+) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
+    var isLoadingMore = false
+
+
+    open class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val txtName = view.findViewById<TextView>(R.id.txtName)
+        fun bind(product: Product) {
+        }
+    }
+
+    class FooterViewHolder(itemView: View) : ViewHolder(itemView) {
+        //        val progressBar: ProgressBar
+        val progressBar = itemView.findViewById<ProgressBar>(R.id.progressBar)
+        val layoutLoading = itemView.findViewById<ConstraintLayout>(R.id.layoutLoading)
+
+//        init {
+//            progressBar = itemView.findViewById(R.id.progressBar)
+//            // Define click listener for the ViewHolder's View.
+//        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        Log.i("huydev", "viewType: " + viewType)
+
+        val view: View =
+            LayoutInflater.from(parent.context).inflate(R.layout.product_item, parent, false);
+        val viewFooter: View =
+            LayoutInflater.from(parent.context).inflate(R.layout.footer_layout, parent, false);
+        if (viewType == REGULAR_VIEW_TYPE) {
+            return ViewHolder(view)
+        }
+        return FooterViewHolder(viewFooter)
+
+//        return FooterViewHolder(viewFooter)
+    }
+
+    override fun getItemCount(): Int {
+        return list.count() + 1
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+//        holder.itemView.setOnClickListener() {
+//            Toast.makeText(this.context, "Its toast!", Toast.LENGTH_SHORT).show();
+//        }
+//        Picasso.get()
+//            .load("https://www.w3schools.com/css/img_5terre.jpg")
+//            .into(holder.productImage);
+//        if(REGULAR_VIEW_TYPE){
+//                    holder.txtName.setText("$position")
+
+//        }
+
+
+        when (holder.itemViewType) {
+            REGULAR_VIEW_TYPE -> {
+//                val title = "Danh sách sản phẩm"
+//                headerHolder.bind(title)
+                holder.txtName.setText("$position")
+            }
+            else -> {
+                if (holder is FooterViewHolder) {
+                    val footerHolder = holder as FooterViewHolder
+                    footerHolder.layoutLoading.visibility =
+                        if (isLoadingMore) View.VISIBLE else View.GONE
+                }
+            }
+        }
+
+    }
+
+
+    override fun getItemViewType(position: Int): Int {
+        Log.i("huydev", "View getItemViewType" + list.count())
+
+        return if (position == list.count()) {
+            FOOTER_VIEW_TYPE
+        } else {
+            REGULAR_VIEW_TYPE
+        }
+//        return REGULAR_VIEW_TYPE
+    }
+
+    fun addData(data: MutableList<Product>) {
+        list.addAll(data)
+    }
+}

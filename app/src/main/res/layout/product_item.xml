@@ -74,13 +74,15 @@
             android:id="@+id/imageView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:src="@drawable/ic_free_ship" />
+            android:src="@drawable/ic_free_ship"
+            />
         <ImageView
             android:id="@+id/imageView45"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
-            tools:srcCompat="@drawable/ic_free_ship" />
+            android:src="@drawable/ic_free_ship"
+             />
 
     </LinearLayout>
 
