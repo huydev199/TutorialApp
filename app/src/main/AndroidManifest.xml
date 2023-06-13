@@ -15,16 +15,16 @@
         android:theme="@style/Theme.TutorialApp"
         tools:targetApi="31">
         <activity
-            android:name=".ProductDetailActivity"
+            android:name=".activies.ProductDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".activies.HomeActivity"
             android:exported="false" />
 
         <service android:name=".MyService" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".activies.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

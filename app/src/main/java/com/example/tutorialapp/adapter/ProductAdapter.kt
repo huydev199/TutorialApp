@@ -9,16 +9,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tutorialapp.HomeActivity
-import com.example.tutorialapp.ProductDetailActivity
+import com.example.tutorialapp.activies.ProductDetailActivity
 import com.example.tutorialapp.R
-import com.example.tutorialapp.model.Product
+import com.example.tutorialapp.model.apis.Product
+
 import com.squareup.picasso.Picasso
-import org.w3c.dom.Text
-import kotlin.math.log
 
 const val REGULAR_VIEW_TYPE = 0
 const val FOOTER_VIEW_TYPE = 1
@@ -32,6 +29,10 @@ class ProductAdapter(
 
     open class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val txtName = view.findViewById<TextView>(R.id.txtName)
+        val txtPrice = view.findViewById<TextView>(R.id.txtPrice)
+        val txtBrand = view.findViewById<TextView>(R.id.txtBrand)
+        val productImg = view.findViewById<ImageView>(R.id.productImage)
+
         fun bind(product: Product) {
         }
     }
@@ -70,22 +71,19 @@ class ProductAdapter(
 //        holder.itemView.setOnClickListener() {
 //            Toast.makeText(this.context, "Its toast!", Toast.LENGTH_SHORT).show();
 //        }
-//        Picasso.get()
-//            .load("https://www.w3schools.com/css/img_5terre.jpg")
-//            .into(holder.productImage);
-//        if(REGULAR_VIEW_TYPE){
-//                    holder.txtName.setText("$position")
-
-//        }
-
-
         when (holder.itemViewType) {
             REGULAR_VIEW_TYPE -> {
-//                val title = "Danh sách sản phẩm"
-//                headerHolder.bind(title)
-                holder.txtName.setText("$position")
+                val item = list[position]
+                holder.txtName.setText(item.title)
+                holder.txtPrice.setText(item.price.toString())
+                holder.txtBrand.setText(item.brand)
+
+                Picasso.get()
+                    .load(item.thumbnail).into(holder.productImg)
+
                 holder.itemView.setOnClickListener {
-                    val i = Intent(context , ProductDetailActivity::class.java)
+                    val i = Intent(context, ProductDetailActivity::class.java)
+                    i.putExtra("Id", item.id);
                     context.startActivity(i)
                 }
             }

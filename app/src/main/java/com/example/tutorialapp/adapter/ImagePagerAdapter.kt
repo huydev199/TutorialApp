@@ -29,8 +29,10 @@ class ImagePagerAdapter(private val list: MutableList<String>,private val contex
     }
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
+        val img = list[position]
+
         Picasso.get()
-            .load("https://www.befunky.com/images/prismic/f5ca4181-01da-4237-92bf-b6938359503e_hero-blur-image-5.jpg?auto=avif,webp&format=jpg&width=896")
+            .load(img)
             .into(holder.imagePager);
     }
 
