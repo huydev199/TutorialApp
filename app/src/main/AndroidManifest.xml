@@ -15,6 +15,9 @@
         android:theme="@style/Theme.TutorialApp"
         tools:targetApi="31">
         <activity
+            android:name=".activies.BottomNavigationActivity"
+            android:exported="false" />
+        <activity
             android:name=".activies.ProductDetailActivity"
             android:exported="false" />
         <activity

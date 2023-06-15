@@ -7,15 +7,21 @@ import android.widget.Button
 import com.example.tutorialapp.R
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var btnHome:  Button
+    private lateinit var btnHome: Button
+    private lateinit var btnBottom: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         btnHome = findViewById(R.id.btnHome)
-        btnHome.setOnClickListener(){view->
-            val i = Intent(this , HomeActivity::class.java)
+        btnBottom = findViewById(R.id.btnBottomNav)
+        btnBottom.setOnClickListener {
+            val i = Intent(this, BottomNavigationActivity::class.java)
+            startActivity(i)
+        }
+        btnHome.setOnClickListener() { view ->
+            val i = Intent(this, HomeActivity::class.java)
             startActivity(i)
         }
 //        Log.i("Main", "MainActivity")
