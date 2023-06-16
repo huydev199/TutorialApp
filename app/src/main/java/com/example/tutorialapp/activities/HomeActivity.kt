@@ -1,4 +1,4 @@
-package com.example.tutorialapp.activies
+package com.example.tutorialapp.activities
 
 import android.os.Bundle
 import android.util.Log
@@ -29,6 +29,7 @@ class HomeActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recycler1)
         setUpRecyclerView()
         initProductApi()
+        Log.d("Data","View productlist"+productList )
 
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -99,8 +100,8 @@ class HomeActivity : AppCompatActivity() {
                 call: Call<ProductResponse>,
                 response: Response<ProductResponse>
             ) {
+                Log.d("resp","view response list"+response)
                 val data = response.body()
-
                 if (response.isSuccessful) {
                     if (data != null) {
                         productList.clear()

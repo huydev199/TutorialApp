@@ -1,4 +1,4 @@
-package com.example.tutorialapp.activies
+package com.example.tutorialapp.activities
 
 import android.os.Bundle
 import android.util.Log

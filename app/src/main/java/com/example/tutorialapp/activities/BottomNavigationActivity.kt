@@ -1,4 +1,4 @@
-package com.example.tutorialapp.activies
+package com.example.tutorialapp.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

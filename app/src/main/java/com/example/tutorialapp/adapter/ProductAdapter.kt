@@ -11,7 +11,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tutorialapp.activies.ProductDetailActivity
+import com.example.tutorialapp.activities.ProductDetailActivity
 import com.example.tutorialapp.R
 import com.example.tutorialapp.model.apis.Product
 

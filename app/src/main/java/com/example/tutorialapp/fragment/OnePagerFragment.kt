@@ -1,16 +1,11 @@
 package com.example.tutorialapp.fragment
 
 import android.os.Bundle
-import android.provider.ContactsContract.Profile
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.viewpager2.widget.ViewPager2
 import com.example.tutorialapp.R
-import com.example.tutorialapp.adapter.CustomPagerAdapter
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -19,10 +14,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
+ * Use the [OnePagerFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class HomeFragment : Fragment() {
+class OnePagerFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -39,32 +34,23 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_one_pager, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val viewPager2 = view.findViewById<ViewPager2>(R.id.viewPagerFragment)
-        val tabLayout = view.findViewById<TabLayout>(R.id.tab_layout)
-        tabLayout.addTab(tabLayout.newTab().setText("dsdas"))
-        tabLayout.addTab(tabLayout.newTab().setText("dsdas"))
-        val adapterPager =  CustomPagerAdapter(childFragmentManager,lifecycle)
-
-        val onePager = OnePagerFragment()
-        val twoPager = TwoPageFragment()
-//
-        adapterPager.addFragment(onePager)
-        adapterPager.addFragment(twoPager)
-        viewPager2.isSaveEnabled = false
-        viewPager2.adapter = adapterPager
-//
-        TabLayoutMediator(tabLayout, viewPager2) { tab, position ->
-            tab.text = "Tab ${position + 1}"
-        }.attach()
-    }
     companion object {
+        /**
+         * Use this factory method to create a new instance of
+         * this fragment using the provided parameters.
+         *
+         * @param param1 Parameter 1.
+         * @param param2 Parameter 2.
+         * @return A new instance of fragment OnePagerFragment.
+         */
+        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
+            OnePagerFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
