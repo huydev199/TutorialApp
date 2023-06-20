@@ -4,6 +4,10 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+<!--    <uses-permission-->
+<!--        android:name="android.permission.POST_NOTIFICATIONS"-->
+<!--        tools:node="remove" />-->
 
     <application
         android:allowBackup="true"
@@ -14,13 +18,49 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TutorialApp"
         tools:targetApi="31">
-        <receiver android:name=".MyReceiver"
+        <service
+            android:name=".MyService"
+            android:enabled="true"
+            android:exported="true"></service>
+        <!-- <provider -->
+        <!-- android:name=".MyNewContentProvider" -->
+        <!-- android:authorities="com.ebookfrenzy.database.provider.MyContentProvider" -->
+        <!-- android:enabled="true" -->
+        <!-- android:exported="true"></provider> -->
+        <!-- <provider -->
+        <!-- android:name=".MyContentProvider" -->
+        <!-- android:readPermission="com.any_string.MY_PERMISSION_FOR_SOMETHING" -->
+        <!-- android:authorities="com.example.studentprovider.provider.StudentProvider" /> -->
+        <receiver
+            android:name=".MyReceiver"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.AIRPLANE_MODE"/>
+                <action android:name="android.intent.action.AIRPLANE_MODE" />
             </intent-filter>
         </receiver>
-
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_free_ship" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/black" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
+        <service
+            android:name=".Service.MyFirebaseInstanceIdService2"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+<!--        <service-->
+<!--            android:name=".Service.MyFirebaseInstanceIdService"-->
+<!--            android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>-->
+<!--            </intent-filter>-->
+<!--        </service>-->
         <activity
             android:name=".activities.BottomNavigationActivity"
             android:exported="false" />
@@ -30,9 +70,6 @@
         <activity
             android:name=".activities.HomeActivity"
             android:exported="false" />
-
-        <service android:name=".MyService" />
-
         <activity
             android:name=".activities.MainActivity"
             android:exported="true">
