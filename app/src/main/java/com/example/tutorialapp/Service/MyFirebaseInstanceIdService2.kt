@@ -10,7 +10,9 @@ import com.google.firebase.messaging.RemoteMessage
 class MyFirebaseInstanceIdService2 : FirebaseMessagingService() {
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
-        Log.d("test", "From: my test")
+
+        Log.d("TAG", "From: ${remoteMessage.from}")
+        Log.d("TAG", "Notification Message Body: ${remoteMessage.notification?.body}")
 
     }
 

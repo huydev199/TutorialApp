@@ -1,30 +1,32 @@
 package com.example.tutorialapp.activities
 
+import android.Manifest
+import android.app.Application
 import android.content.ContentResolver
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.Telephony
+import android.util.Log
 import android.view.View
 import android.widget.Button
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.example.tutorialapp.MyReceiver
 import com.example.tutorialapp.R
-import android.Manifest
-import android.os.Build
-import android.util.Log
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
+import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
     private lateinit var btnHome: Button
     private lateinit var btnBottom: Button
+    private lateinit var buttonCamera: Button
     private val MY_PERMISSIONS_REQUEST_READ_SMS = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,24 +35,10 @@ class MainActivity : AppCompatActivity() {
         addBroadcast()
         addContentProvider()
         askNotificationPermission()
-//        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
-//            if (!task.isSuccessful) {
-////                Log.w(TAG, "Fetching FCM registration token failed", task.exception)
-//                return@OnCompleteListener
-//            }
-//
-//            // Get new FCM registration token
-//            val token = task.result
-//
-//            // Log and toast
-////            val msg = getString(R.string.msg_token_fmt, token)
-//            Log.d("mytoken", "token "+token)
-//
-////            Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
-//        })
 
         btnHome = findViewById(R.id.btnHome)
         btnBottom = findViewById(R.id.btnBottomNav)
+        buttonCamera = findViewById(R.id.btnCamera)
 
 
         btnBottom.setOnClickListener {
@@ -61,9 +49,39 @@ class MainActivity : AppCompatActivity() {
             val i = Intent(this, HomeActivity::class.java)
             startActivity(i)
         }
+
+        buttonCamera.setOnClickListener() { view ->
+            val i = Intent(this, CameraActivity::class.java)
+            startActivity(i)
+        }
+
 //        Log.i("Main", "MainActivity")
 //        val serviceIntent = Intent(this, MyService::class.java)
 //        startService(serviceIntent)
+    }
+
+//    private val activityResultLauncher =
+//        registerForActivityResult(
+//            ActivityResultContracts.RequestMultiplePermissions())
+//        { permissions ->
+//            // Handle Permission granted/rejected
+//            var permissionGranted = true
+//            permissions.entries.forEach {
+//                if (it.key in REQUIRED_PERMISSIONS && it.value == false)
+//                    permissionGranted = false
+//            }
+//            if (!permissionGranted) {
+//                Toast.makeText(baseContext,
+//                    "Permission request denied",
+//                    Toast.LENGTH_SHORT).show()
+//            } else {
+//                startCamera()
+//            }
+//        }
+
+
+    override fun registerActivityLifecycleCallbacks(callback: Application.ActivityLifecycleCallbacks) {
+        super.registerActivityLifecycleCallbacks(callback)
     }
 
     private fun addContentProvider(){
@@ -83,6 +101,15 @@ class MainActivity : AppCompatActivity() {
         fetchSmsData(contentResolver)
     }
 
+//    override fun onRequestPermissionsResult(
+//        requestCode: Int,
+//        permissions: Array<out String>,
+//        grantResults: IntArray
+//    ) {
+//        Log.d("view request", requestCode.toString())
+////        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+//    }
+
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission(),
     ) { isGranted: Boolean ->
@@ -95,6 +122,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun askNotificationPermission() {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+//                Log.w(TAG, "Fetching FCM registration token failed", task.exception)
+                return@OnCompleteListener
+            }
+
+            // Get new FCM registration token
+            val token = task.result
+
+            // Log and toast
+//            val msg = getString(R.string.msg_token_fmt, token)
+            Log.d("mytoken", "token "+token)
+
+//            Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
+        })
+
         // This is only necessary for API level >= 33 (TIRAMISU)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) ==

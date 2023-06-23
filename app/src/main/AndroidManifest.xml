@@ -5,10 +5,11 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_SMS" />
-<!--    <uses-permission-->
-<!--        android:name="android.permission.POST_NOTIFICATIONS"-->
-<!--        tools:node="remove" />-->
-
+    <uses-feature android:name="android.hardware.camera.any" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -18,11 +19,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TutorialApp"
         tools:targetApi="31">
+        <activity
+            android:name=".activities.CameraActivity"
+            android:exported="false" />
+
         <service
             android:name=".MyService"
             android:enabled="true"
-            android:exported="true"></service>
-        <!-- <provider -->
+            android:exported="true" /> <!-- <provider -->
         <!-- android:name=".MyNewContentProvider" -->
         <!-- android:authorities="com.ebookfrenzy.database.provider.MyContentProvider" -->
         <!-- android:enabled="true" -->
@@ -38,6 +42,7 @@
                 <action android:name="android.intent.action.AIRPLANE_MODE" />
             </intent-filter>
         </receiver>
+
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_free_ship" />
@@ -47,20 +52,20 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/default_notification_channel_id" />
+
         <service
             android:name=".Service.MyFirebaseInstanceIdService2"
             android:exported="true">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
-        </service>
-<!--        <service-->
-<!--            android:name=".Service.MyFirebaseInstanceIdService"-->
-<!--            android:exported="true">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>-->
-<!--            </intent-filter>-->
-<!--        </service>-->
+        </service> <!-- <service -->
+        <!-- android:name=".Service.MyFirebaseInstanceIdService" -->
+        <!-- android:exported="true"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/> -->
+        <!-- </intent-filter> -->
+        <!-- </service> -->
         <activity
             android:name=".activities.BottomNavigationActivity"
             android:exported="false" />
