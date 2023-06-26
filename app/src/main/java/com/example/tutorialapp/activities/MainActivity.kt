@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnHome: Button
     private lateinit var btnBottom: Button
     private lateinit var buttonCamera: Button
+    private lateinit var buttonCommucation: Button
     private val MY_PERMISSIONS_REQUEST_READ_SMS = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         btnHome = findViewById(R.id.btnHome)
         btnBottom = findViewById(R.id.btnBottomNav)
         buttonCamera = findViewById(R.id.btnCamera)
+        buttonCommucation = findViewById(R.id.btnCommunication)
 
 
         btnBottom.setOnClickListener {
@@ -54,6 +56,11 @@ class MainActivity : AppCompatActivity() {
             val i = Intent(this, CameraActivity::class.java)
             startActivity(i)
         }
+        buttonCommucation.setOnClickListener() { view ->
+            val i = Intent(this, CommunicationActivity::class.java)
+            startActivity(i)
+        }
+
 
 //        Log.i("Main", "MainActivity")
 //        val serviceIntent = Intent(this, MyService::class.java)
